@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class ProductoTableModel<T> extends AbstractTableModel {
 
     protected List<T> lstValores;
-    protected String[] columnNames = {"Clave", "Nombre"};
+    protected String[] columnNames = {"Clave", "Descripcion", "Precio Venta", "Precio Compra"};
 
     public ProductoTableModel(String [] columnNames, List<T> lstValores) {
         this.lstValores = lstValores;
