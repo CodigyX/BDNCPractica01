@@ -18,9 +18,9 @@ public class ProductosView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ProductosView
      */
+    
     public ProductosView() {
         initComponents();
-        txtClave.disable();
     }
 
     /**
@@ -249,6 +249,17 @@ public class ProductosView extends javax.swing.JInternalFrame {
         p.setPrecioVenta(Double.parseDouble(txtPrecioVenta.getText()));
         p.setPrecioCompra(Double.parseDouble(txtPrecioCompra.getText()));
 
+        boolean res = daoE.guardar(p);
+        if (res) {
+            JOptionPane.showMessageDialog(null, "Exito");
+            txtClave.setText("");
+            txtDescripcion.setText("");
+            txtPrecioVenta.setText("");
+            txtPrecioCompra.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jTableProductosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTableProductosAncestorAdded
