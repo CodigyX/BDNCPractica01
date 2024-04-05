@@ -18,9 +18,33 @@ public class ProductosView extends javax.swing.JInternalFrame {
     /**
      * Creates new form ProductosView
      */
+    private void habilitarTxt() {
+        txtClave.setEnabled(true);
+        txtDescripcion.setEnabled(true);
+        txtPrecioVenta.setEnabled(true);
+        txtPrecioCompra.setEnabled(true);
+    }
+    private void deshabilitarTxt() {
+        txtClave.setEnabled(false);
+        txtDescripcion.setEnabled(false);
+        txtPrecioVenta.setEnabled(false);
+        txtPrecioCompra.setEnabled(false);
+    }
+    private void vaciarTXT() {
+        txtClave.setText("");
+        txtDescripcion.setText("");
+        txtPrecioVenta.setText("");
+        txtPrecioCompra.setText("");
+    }
+
     
     public ProductosView() {
         initComponents();
+        btnGuardar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        habilitarTxt();
+        deshabilitarTxt();
+        vaciarTXT();
     }
 
     /**
@@ -54,7 +78,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jToolBar1.setRollover(true);
 
-        btnNuevo.setBackground(new java.awt.Color(0, 153, 0));
         btnNuevo.setText("Nuevo");
         btnNuevo.setFocusable(false);
         btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -66,7 +89,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnNuevo);
 
-        btnModificar.setBackground(new java.awt.Color(0, 51, 255));
         btnModificar.setText("Modificar");
         btnModificar.setFocusable(false);
         btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -78,7 +100,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnModificar);
 
-        btnEliminar.setBackground(new java.awt.Color(204, 0, 0));
         btnEliminar.setText("Eliminar");
         btnEliminar.setFocusable(false);
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -90,7 +111,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnEliminar);
 
-        btnBuscar.setBackground(new java.awt.Color(51, 0, 51));
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +136,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         });
 
         btnGuardar.setBackground(new java.awt.Color(0, 51, 0));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +144,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        btnBuscarAll.setBackground(new java.awt.Color(0, 0, 102));
+        btnBuscarAll.setBackground(new java.awt.Color(204, 204, 255));
+        btnBuscarAll.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarAll.setText("Buscar All");
         btnBuscarAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +185,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableProductos);
 
         btnCancelar.setBackground(new java.awt.Color(102, 0, 0));
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("Cancelar");
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -236,7 +259,9 @@ public class ProductosView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        txtClave.setEnabled(true);
+        habilitarTxt();
+        btnGuardar.setEnabled(true);
+        btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtPrecioVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioVentaActionPerformed
@@ -244,6 +269,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPrecioVentaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        btnGuardar.setEnabled(true);
+        btnCancelar.setEnabled(true);
         Producto p = new Producto();
         p.setDescripcion(txtDescripcion.getText());
         p.setPrecioVenta(Double.parseDouble(txtPrecioVenta.getText()));
@@ -252,10 +279,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         boolean res = daoE.guardar(p);
         if (res) {
             JOptionPane.showMessageDialog(null, "Exito");
-            txtClave.setText("");
-            txtDescripcion.setText("");
-            txtPrecioVenta.setText("");
-            txtPrecioCompra.setText("");
+            vaciarTXT();
 
         } else {
             JOptionPane.showMessageDialog(null, "Error");
@@ -294,17 +318,14 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(null, "Eliminado");
 
-            txtClave.setText("");;
+            txtClave.setText("");
         } else {
             JOptionPane.showMessageDialog(null, "No se encontro");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        txtClave.setText("");
-        txtDescripcion.setText("");
-        txtPrecioVenta.setText("");
-        txtPrecioCompra.setText("");
+        vaciarTXT();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -320,17 +341,15 @@ public class ProductosView extends javax.swing.JInternalFrame {
             daoE.modificar(producto);
 
             JOptionPane.showMessageDialog(null, "Exito.");
-            txtClave.setText("");
-            txtDescripcion.setText("");
-            txtPrecioVenta.setText("");
-            txtPrecioCompra.setText("");
+            vaciarTXT();
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró ");
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnBuscarAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAllActionPerformed
-        String[] columnNames = {"Clave", "Descripción", "Precio de Venta", "Costo"};
+        
+        String[] columnNames = {"Clave", "Descripcion", "Precio Venta", "Precio Compra"};
         List<Producto> productos = daoE.findAll();
         pro = new ProductoTableModel<Producto>(columnNames, productos) {
             @Override

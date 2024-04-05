@@ -19,18 +19,18 @@ public class Producto implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "producto_id_seq")
-    @SequenceGenerator(name = "producto_id_seq",
-            sequenceName = "producto_id_seq",
+            generator = "producto_idproducto_seq")
+    @SequenceGenerator(name = "producto_idproducto_seq",
+            sequenceName = "producto_idproducto_seq",
             allocationSize = 1,
             initialValue = 1)
     @Column(name = "idproducto")
     private long id;
     @Column(name = "descripcion")
     private String descripcion;
-    @Column(name="precio")
+    @Column(name="precioventa")
     private double precioVenta;
-    @Column(name="costo")
+    @Column(name="preciocompra")
     private double precioCompra;
 
     public long getId() {

@@ -35,7 +35,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
-        setMinimumSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 500));
         setPreferredSize(new java.awt.Dimension(400, 275));
         getContentPane().setLayout(new java.awt.BorderLayout(400, 275));
         getContentPane().add(jLayeredPane1, java.awt.BorderLayout.CENTER);
